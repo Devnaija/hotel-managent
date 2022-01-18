@@ -1,0 +1,105 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block title %}| About{% endblock %}
+
+{% block content %}
+
+<section id="showcase-inner" class="py-5 text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="dsiplay-4">About Ncode Hotel </h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias officiis voluptatibus sed debitis dolore
+          tenetur.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<!-- bedcrum -->
+<section id="bd" class="mt-3">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a>
+        </li>
+        <li class="breadcrumb-item active">About</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- about -->
+<section id="about" class="py-4">
+  <div class="container">
+    <div class="row wrap text-white">
+          <!-- first row -->
+          <div class="col-md-6 img-wrapper">
+            <img class="inner-img" src="{% static 'img/hms5.jpg' %}" />
+          </div>
+    
+          <div class="col-md-6 con">
+            <h3 class="py-4"> Ncode Hotel </h3>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque incidunt vitae neque dignissimos
+              sapiente laudantium deleniti vel fugiat reprehenderit corporis! Fugiat cupiditate a, accusantium quisquam
+              saepe nemo sapiente exercitationem id. Delectus neque tempora sequi numquam! Vero dolorum voluptate aliquam
+              magnam? Dolore natus magni culpa delectus quos impedit, maiores consequuntur quam?</p>
+            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam quam nihil laudantium dolorum
+              repudiandae rerum sunt quae eaque earum unde!</p>
+          </div>
+    
+       
+        </div>
+      </div>
+</section>
+
+<!-- work -->
+<section id="work" class="bg-dark text-white text-center py-4">
+  <h2 class="display-4">We Are Here For You</h2>
+  <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, vero.</h4>
+  <hr>
+  <a href="{% url 'rooms' %}" class="btn btn-outline-dark text-white btn-lg">View Latest Rooms & Suits</a>
+</section>
+
+<!-- location -->
+<section id="map">
+  <div class="container">
+    <h4 class="text-center display-4 py-2">Address</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.3837376654255!2d3.3446709143171045!3d6.599140524111308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9231a8afe793%3A0x5f297da31d68daec!2sAnchorsoft%20Academy%20Computer%20Training%20Center!5e0!3m2!1sen!2sng!4v1619111601007!5m2!1sen!2sng"
+          width="1125" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- sponsors -->
+<section id="features" class="py-3">
+  <h4 class="text-center display-4 py-2">Sponsors</h4>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-4">
+        <div class="img-wrapper">
+          <img class="inner-img" src="{% static 'img/spn1.png' %}" />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="img-wrapper">
+          <img class="inner-img" src="{% static 'img/spn2.png' %}" />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="img-wrapper">
+          <img class="inner-img" src="{% static 'img/spn3.png' %}" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

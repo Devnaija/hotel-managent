@@ -1,0 +1,101 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block title %}| Rooms & Suit {% endblock %}
+{% load humanize %}
+{% block content %}
+
+<section id="showcase-inner-rs" class="py-5 text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="dsiplay-4"> Ncode Hotel <br>Rooms & Suits</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias officiis voluptatibus sed debitis dolore
+          tenetur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- bedcrum -->
+<section id="bd" class="mt-3">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a>
+        </li>
+        <li class="breadcrumb-item active">Rooms & Suits</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- rooms and suits -->
+<section id="rooms" class="py-4">
+  <div class="container">
+
+      <h3 class="text-center py-2">Latest Rooms & Suits</h3>
+      <div class="row">
+        {% if show %}
+          {% for room in show %}
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card listing-preview">
+                <img src="{{room.photo_main.url}}" alt="" class="card-img-top" id="pop">
+                <div class="card-img-overlay">
+                  <h2>
+                    <span class="badge badge-success text-white text-uppercase">{{room.room_type}}</span>
+                  </h2>
+                </div>
+                <div class="card-body">
+                  <div class="listing-heading text-center">
+                    <h4 class="text-success"> {{room.room_name}}</h4>
+                  </div>
+                  <hr>
+            
+                  <div class="row py-2 text-dark">
+                    <div class="col-6">
+                      <i class="fas fa-bed"></i> {{room.bedrooms}}
+                    </div>
+                    <div class="col-6">
+                      <i class="fas fa-bath"></i> {{room.bathrooms}} Steam Bath Showers
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row py-2 text-dark">
+                    <div class="col-6">
+                      <i class="fas fa-th-large"></i> sqrt:{{room.sqft}}
+                    </div>
+                    <div class="col-6">
+                      <i class="fas fa-money-bill"></i>Price: <strong> {{room.price |intcomma}}</strong> per night
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row py-2">
+                    <div class="col-6">
+                      {% if room.is_booked == True %}
+                      <a href="" class="btn btn-success btn-block disabled">Room Booked Already </a>
+                      {% else %}
+                      <a href="{% url 'check' room.id %}" class="btn btn-primary btn-block"> Book</a>
+                    {% endif %}
+                
+                    </div>
+                    <div class="col-6">
+                      <a href="{% url 'room' room.id %}" class="btn btn-success btn-block font-weight-bold"> More Info</a>
+                    </div>
+                  </div>
+            
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+        <p>No Room Available</p>
+        {% endif %}
+        
+      </div>
+  </div>
+</section>
+
+
+
+{% endblock %}

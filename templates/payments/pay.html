@@ -1,0 +1,99 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}| {{show.room_name}} {% endblock %}
+{% load humanize %}
+{% block content %}
+
+
+
+<section id="checkout">
+  <div class="container py-5">
+    <a href="{% url 'rooms' %}" class="btn btn-outline-dark m-2">&larr; Back To Rooms</a>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card p-2">
+          <h4 class="">Payment Option <i class="fas fa-money-bill-alt"></i></h4> <hr>
+            <!-- palpal option -->
+            <!-- Set up a container element for the button -->
+            <div id="paypal-button-container"></div>
+            <!-- card option -->
+        </div>
+        
+      </div>
+       
+      <div class="col-md-6">  
+        <div class="card p-2">
+          <h4 class="">Booking Summary <i class="fas fa-list-alt "></i></h4>
+          <hr>
+          {% if show %}
+            <img src="{{show.room.photo_main.url}}" alt="" class="card-img-top" id="pop">
+            <h4 class="text-center">Room Name: {{show.room}}</h4>
+            <hr class="m-1">
+            <p><i class="fas fa-sign-in-alt fa-2x"></i> <span class="font-weight-bold"> {{show.checkin_date|date:'Y-m-d'}}</span> Checkin</p>
+            <p><i class="fas fa-sign-out-alt fa-2x"></i> <span class="font-weight-bold"> {{show.checkout_date|date:'Y-m-d'}}</span> Checkout</p>
+            <hr class="m-1">
+            <p class="font-weight-bold">Total Days: {{days}} </p>
+            <p class="font-weight-bold">Room PerNight:&#8358 {{show.room.price}} </p>
+            <h3 class="font-weight-bold">Total Amount:&#8358 {{total|intcomma}} </h3>
+
+          {% else %}   
+            <p class="lead">No Booking Summary</p>
+          {% endif %}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- scripts for paypal -->
+
+
+<!-- Include the PayPal JavaScript SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=Afpzr5wxf5WYekwpShBV-wUt3tnUITjgD7r1zhGApjwhRNCF1jFV10dwFkbw_fKna-pN87GYTyref_VP&currency=USD"></script>
+
+<script>
+  let total = '{{total}}'
+  // Render the PayPal button into #paypal-button-container
+  paypal.Buttons({
+    // Set up the transaction
+    createOrder: function (data, actions) {
+      var url = "{% url 'dashboard' %}"
+      
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: total
+          }
+        }]
+      });
+    },
+
+    // Finalize the transaction
+    onApprove: function (data, actions) {
+      return actions.order.capture().then(function (orderData) {
+        // Successful capture! For demo purposes:
+        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+        var transaction = orderData.purchase_units[0].payments.captures[0];
+        
+        window.location.href = "{% url 'dashboard' %}";
+        alert('Transaction ' + transaction.status + '\n\n Check your dashboard for more details' + window.location.href);
+        // Replace the above to show a success message within this page, e.g.
+        // const element = document.getElementById('paypal-button-container');
+        // element.innerHTML = '';
+        // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+        // Or go to another         
+      });
+    }
+
+
+  }).render('#paypal-button-container');
+</script>
+
+
+<!-- end of scripts for paypal -->
+
+{% endblock %}
