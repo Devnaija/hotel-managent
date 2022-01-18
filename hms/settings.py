@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'hms.wsgi.application'
 # postgress
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get('HDB_NAME'),
         'USER': os.environ.get('HDB_USER'),
         'PASSWORD': os.environ.get('HDB_PASS'),
