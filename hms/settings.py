@@ -161,7 +161,7 @@ MESSAGE_TAGS = {
     
 }
 
-#Email config
+#Email configuration
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
