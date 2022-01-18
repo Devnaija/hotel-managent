@@ -21,8 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-vs6a)!uml=iyg%65-9$)akw&t093-#t2su&l)sbm%3-ugat*%*'
-# SECRET_KEY = os.environ.get('HSECRET_KEY')
+SECRET_KEY = os.environ.get('HSECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -86,24 +85,24 @@ WSGI_APPLICATION = 'hms.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # postgress
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.environ.get('HDB_NAME'),
-#         'USER': os.environ.get('HDB_USER'),
-#         'PASSWORD': os.environ.get('HDB_PASS'),
-#         'PORT': '5432',
-#         'HOST': os.environ.get('HDB_HOST'),
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('HDB_NAME'),
+        'USER': os.environ.get('HDB_USER'),
+        'PASSWORD': os.environ.get('HDB_PASS'),
+        'PORT': '5432',
+        'HOST': os.environ.get('HDB_HOST'),
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
