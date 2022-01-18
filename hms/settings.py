@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vs6a)!uml=iyg%65-9$)akw&t093-#t2su&l)sbm%3-ugat*%*
 # SECRET_KEY = os.environ.get('HSECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['*', 'hotelmgts.herokuapp.com', 'localhost', '127.0.0.1']
